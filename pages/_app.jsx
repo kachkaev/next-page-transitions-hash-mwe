@@ -1,8 +1,18 @@
 import App, { Container } from "next/app";
 import React from "react";
 import { PageTransition } from "next-page-transitions";
+import getConfig from "next/config";
 
-const PAGE_TRANSITIONS_ENABLED = true;
+const {
+  publicRuntimeConfig: { PAGE_TRANSITIONS_ENABLED }
+} = getConfig();
+
+const TransitionsEnabledIndicator = () => (
+  <code>
+    PAGE_TRANSITIONS_ENABLED=
+    {JSON.stringify(PAGE_TRANSITIONS_ENABLED)}
+  </code>
+);
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -20,6 +30,7 @@ export default class MyApp extends App {
     if (PAGE_TRANSITIONS_ENABLED) {
       return (
         <Container>
+          <TransitionsEnabledIndicator />
           <PageTransition
             timeout={300}
             classNames="page-transition"
@@ -49,6 +60,7 @@ export default class MyApp extends App {
     } else {
       return (
         <Container>
+          <TransitionsEnabledIndicator />
           <Component {...pageProps} />
         </Container>
       );
