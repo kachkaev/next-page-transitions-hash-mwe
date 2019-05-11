@@ -8,7 +8,7 @@ const {
 } = getConfig();
 
 const TransitionsEnabledIndicator = () => (
-  <code>
+  <code style={{ color: PAGE_TRANSITIONS_ENABLED ? "#393" : "#666" }}>
     PAGE_TRANSITIONS_ENABLED=
     {JSON.stringify(PAGE_TRANSITIONS_ENABLED)}
   </code>
